@@ -1,5 +1,26 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+.node-view {
+  background: #ccc;
+}
+
+.node-root {
+  background: yellow;
+  padding: 5px;
+}
+
+.node-parent {
+  background: green;
+  margin-left: 20px;
+  padding: 5px;
+}
+
+.node-child {
+  background: orange;
+  margin-left: 20px;
+  padding: 5px;
 }
