@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 export default class NodeChild extends Component {
   render() {
     return (
-      <div className="node-child">
-        This is a child node.
-      </div>
+      <ul className="node-child">
+        <li>This is a child node.</li>
+      </ul>
     );
   }
 }

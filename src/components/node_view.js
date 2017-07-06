@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import NodeRoot from '../components/node_root';
+import NodeRoot from './node_root';
 
 export default class NodeView extends Component {
   componentDidMount() {
