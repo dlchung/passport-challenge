@@ -13,8 +13,7 @@ export default class NodeParent extends Component {
 
   }
   renderNodes() {
-    // childArray = childArray.concat([this.generateChildNodes()]);
-    // console.log(childArray);
+    childArray = this.generateChildNodes();
     return childArray.map(function(props, index) {
       return (
         <NodeChild key={index} />
@@ -44,7 +43,9 @@ export default class NodeParent extends Component {
     return (
       <li className="node-parent">
         {this.props.label}
-        <ul>{this.renderNodes()}</ul>
+        <ol className="node_child">
+          {this.renderNodes()}
+        </ol>
       </li>
     );
   }

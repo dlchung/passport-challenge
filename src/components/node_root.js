@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import NodeParent from './node_parent';
 
 var parentNodes = [];
-// var parentNodes = [
-//   { parentLabel: 'test parent', parentLower: 4, parentUpper: 10, parentQuantity: 3, parentChildren: '' }
-// ];
 
 export default class NodeRoot extends Component {
   constructor(props) {
