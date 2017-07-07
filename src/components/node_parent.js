@@ -42,7 +42,7 @@ export default class NodeParent extends Component {
     // console.log(this.props);
     return (
       <li className="node-parent">
-        {this.props.label}
+        {this.props.label} This is a parent node.
         <ol className="node_child">
           {this.renderNodes()}
         </ol>
