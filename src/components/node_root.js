@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import NodeParent from './node_parent';
 
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -18,27 +17,33 @@ export default class NodeRoot extends Component {
       parentLower: '',
       parentUpper: '',
       parentQuantity: '',
-      parentChildren: ''
+      parentChildren: '',
+      childArray: ''
     };
 
     this.addParent = this.addParent.bind(this);
   }
 
   renderNodes() {
-    // console.log(parentNodes);
-
-    return parentNodes.map(function(props, index) {
+    return parentNodes.map(function(props, index) { // map through parentNodes
       return (
-        <NodeParent
-          key={index}
-          label={props.parentLabel}
-          lower={props.parentLower}
-          upper={props.parentUpper}
-          quantity={props.parentQuantity}
-          children={props.parentChildren}
-        />
+        <li className="node-parent" key={index}>
+          {props.parentLabel} This is a parent node.
+          <ol className="node_child">
+            {
+              // mapping through child nodes for each parent here
+              props.parentChildren.map(function(props, index) {
+                return (
+                  <li key={index}>{props}</li>
+                );
+              })
+            }
+          </ol>
+        </li>
       );
     });
+
+
   }
 
   addParent() {
@@ -46,6 +51,8 @@ export default class NodeRoot extends Component {
     var lower = this.generateRandomNumber(0,9);
     var upper = this.generateRandomNumber(10,100);
     var quantity = this.generateRandomNumber(1,15);
+    var children = this.generateChildNodes(lower, upper, quantity);
+
 
     this.setState({
       parentLabel: label,
@@ -59,10 +66,21 @@ export default class NodeRoot extends Component {
       parentLower: lower,
       parentUpper: upper,
       parentQuantity: quantity,
-      parentChildren: ''
+      parentChildren: children
     });
 
     console.log(parentNodes);
+  }
+  
+  generateChildNodes(lower, upper, quantity) {
+    var childValueArray = [];
+    var i;
+    for(i = 0; i < quantity; i++) {
+      var childValue = this.generateRandomNumber(lower, upper);
+      childValueArray.push(childValue);
+    }
+
+    return childValueArray;
   }
 
   generateRandomNumber(min, max) { // both inclusive
@@ -75,6 +93,7 @@ export default class NodeRoot extends Component {
     return(
       <ul className="node-root">
         This is the root view.
+        <button onTouchTap={this.addParent}> + </button>
         {this.renderNodes()}
       </ul>
     );
