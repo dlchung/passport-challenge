@@ -42,8 +42,6 @@ export default class NodeRoot extends Component {
         </li>
       );
     });
-
-
   }
 
   addParent() {
@@ -71,7 +69,7 @@ export default class NodeRoot extends Component {
 
     console.log(parentNodes);
   }
-  
+
   generateChildNodes(lower, upper, quantity) {
     var childValueArray = [];
     var i;
