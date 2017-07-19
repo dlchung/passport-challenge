@@ -3,8 +3,6 @@ import * as firebase from 'firebase';
 import NodeRoot from './node_root';
 import DialogAdd from './dialog_add';
 
-var parentNodes;
-
 const firebaseConfig = {
   apiKey: "AIzaSyDlGymK7eK3hlYLgYyIkN_psbbjGSz74FY",
   authDomain: "passport-challenge-92a65.firebaseapp.com",

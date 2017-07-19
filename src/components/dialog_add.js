@@ -7,7 +7,7 @@ import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
+// import Divider from 'material-ui/Divider';
 
 const numChildItems = [];
 // populate num child nodes select dropdown
@@ -40,8 +40,9 @@ export default class AddDialog extends Component {
         this.state.parentUpper,
         this.state.parentQuantity),
     }];
+    console.log(this.props.parentNodes);
     // if this.props.parentNodes is empty, then do not concat
-    this.props.parentNodes ? data = this.props.parentNodes.concat(data) : null;
+    if(this.props.parentNodes) { data = this.props.parentNodes.concat(data); }
     this.writeNodeData(data);
     this.setState({ open: false });
   }
