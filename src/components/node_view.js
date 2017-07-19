@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import NodeRoot from './node_root';
 import DialogAdd from './dialog_add';
 
+var parentNodes;
+
 export default class NodeView extends Component {
-  componentDidMount() {
-
-  }
-
   render() {
     return (
       <div className="node-view">

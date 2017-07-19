@@ -10,18 +10,18 @@ body {
 }
 
 .node-root {
-  background: yellow;
+  background: #eee;
   padding: 5px;
 }
 
 .node-parent {
-  background: green;
+  background: #ccc;
   margin-left: 20px;
   padding: 5px;
 }
 
 .node-child {
-  background: orange;
+  background: #aaa;
   margin-left: 20px;
   padding: 5px;
 }
