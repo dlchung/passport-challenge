@@ -1,21 +1,13 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-// import { withStyles, createStyleSheet } from 'material-ui/styles';
 import Dialog from 'material-ui/Dialog';
-// import RaisedButton from 'material-ui/RaisedButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-// import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 // import Divider from 'material-ui/Divider';
-
-// const styleSheet = createStyleSheet('FlatButtons', theme => ({
-//   button: {
-//     margin: theme.spacing.unit,
-//   },
-// }));
 
 const numChildItems = [];
 // populate num child nodes select dropdown
@@ -81,19 +73,19 @@ export default class AddDialog extends Component {
       <FlatButton
         label="Cancel"
         primary={true}
-        onClick={this.handleClose}
+        onTouchTap={this.handleClose}
       />,
       <FlatButton
         label="Add"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleSubmit}
+        onTouchTap={this.handleSubmit}
       />
     ];
 
     return (
       <div>
-        <FlatButton label="Dialog" onClick={this.handleOpen} />
+        <RaisedButton label="Dialog" onTouchTap={this.handleOpen} />
         <Dialog
           title="Add a Parent Node"
           actions={actions}
