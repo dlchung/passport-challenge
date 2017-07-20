@@ -41,20 +41,35 @@ export default class DialogEdit extends Component {
   };
 
   handleSubmit = () => {
+    // if these values are modified, generate new children
+    var getNewChildNodes = false;
+    if (this.props.parentData.parentLower !== this.state.parentLower) { getNewChildNodes = true; }
+    if (this.props.parentData.parentUpper !== this.state.parentUpper) { getNewChildNodes = true; }
+    if (this.props.parentData.parentQuantity !== this.state.parentQuantity) { getNewChildNodes = true; }
+
+    var newChildNodes = this.state.parentChildren;
+    if (getNewChildNodes) {
+      newChildNodes = this.generateChildNodes(
+      this.state.parentLower,
+      this.state.parentUpper,
+      this.state.parentQuantity)
+    }
+
     var data = [{
       parentLabel: this.state.parentLabel,
       parentLower: this.state.parentLower,
       parentUpper: this.state.parentUpper,
       parentQuantity: this.state.parentQuantity,
-      parentChildren: this.generateChildNodes(
-        this.state.parentLower,
-        this.state.parentUpper,
-        this.state.parentQuantity),
+      parentChildren: newChildNodes,
     }];
-    // if this.props.parentNodes is empty, then do not concat
-    if(this.props.parentNodes) { data = this.props.parentNodes.concat(data); }
-    this.writeNodeData(data);
+    this.updateNodeData(data, this.props.keyIndex);
     this.setState({ open: false });
+  }
+
+  updateNodeData(data, keyIndex) {
+    //firebase.database().ref('nodes').child(keyIndex).set(data);
+
+    //console.log(newKey);
   }
 
   render() {
