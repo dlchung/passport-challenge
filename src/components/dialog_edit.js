@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
 
-import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import SelectField from 'material-ui/SelectField';
+import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
-// import Divider from 'material-ui/Divider';
 
 const numChildItems = [];
 // populate num child nodes select dropdown
@@ -15,13 +14,22 @@ const maxChildren = 15;
 for (let i = 0; i <= maxChildren; i++)
   numChildItems.push(<MenuItem value={i} key={i} primaryText={`${i}`} />)
 
-export default class DialogAdd extends Component {
+export default class DialogEdit extends Component {
   constructor(props) {
     super();
 
     this.state = {
-      open: false
-    };
+      open: false,
+      parentNodeData: ''
+    }
+  }
+
+  componentDidMount() {
+    var data = firebase.database().ref('nodes/' + this.props.id);
+    data.once('value', function(snap) {
+      console.log(snap.val());
+      // this.setState({ parentNodeData: snap.val() });
+    })
   }
 
   handleOpen = () => { this.setState({ open: true }); };
@@ -51,39 +59,6 @@ export default class DialogAdd extends Component {
     this.setState({ open: false });
   }
 
-  generateChildNodes(lower, upper, quantity) {
-    var childValueArray = [];
-    var i;
-    for(i = 0; i < quantity; i++) {
-      var childValue = this.generateRandomNumber(lower, upper);
-      childValueArray.push(childValue);
-    }
-
-    return childValueArray;
-  }
-
-  generateRandomNumber(min, max) { // both inclusive
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max-min+1)) + min;
-  }
-
-  generateUniqueId() {
-    var id = "";
-    var constraints = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var chars = 5;
-
-    for (let i = 0; i < chars; i++) {
-      id += constraints.charAt(Math.floor(Math.random() * constraints.length));
-    }
-
-    return id;
-  }
-
-  writeNodeData(data) {
-    firebase.database().ref('nodes').set(data);
-  }
-
   render() {
     const actions = [
       <FlatButton
@@ -92,7 +67,7 @@ export default class DialogAdd extends Component {
         onTouchTap={this.handleClose}
       />,
       <FlatButton
-        label="Add"
+        label="Edit"
         primary={true}
         keyboardFocused={true}
         onTouchTap={this.handleSubmit}
@@ -101,9 +76,9 @@ export default class DialogAdd extends Component {
 
     return (
       <div>
-        <RaisedButton label="+ Parent" onTouchTap={this.handleOpen} />
+        <RaisedButton label="Edit" onTouchTap={this.handleOpen} />
         <Dialog
-          title="Add a Parent Node"
+          title="Edit Parent Node"
           actions={actions}
           modal={true}
           open={this.state.open}
@@ -113,6 +88,7 @@ export default class DialogAdd extends Component {
             name="parentLabel"
             onChange={this.handleChange}
             hintText="Parent Label"
+            // value={parentDataArray.parentLabel}
           />
           <br />
           <SelectField

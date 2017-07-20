@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import * as firebase from 'firebase';
+import DialogEdit from './dialog_edit';
 
 export default class NodeRoot extends Component {
   constructor(props) {
@@ -14,7 +15,7 @@ export default class NodeRoot extends Component {
       let obj = nodes[keyName];
       return (
         <li className="node-parent" key={keyIndex}>
-        {obj.parentLabel}
+        {obj.parentLabel} - {keyIndex} - <DialogEdit id={keyIndex} />
           <ol>
             {
               // mapping through child nodes for each parent here
