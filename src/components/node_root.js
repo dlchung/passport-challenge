@@ -1,12 +1,6 @@
 import React, { Component } from 'react';
 // import * as firebase from 'firebase';
 
-import injectTapEventPlugin from 'react-tap-event-plugin';
-
-// Needed for onTouchTap
-// http://stackoverflow.com/a/34015469/988941
-injectTapEventPlugin();
-
 export default class NodeRoot extends Component {
   constructor(props) {
     super();
@@ -40,7 +34,6 @@ export default class NodeRoot extends Component {
     return(
       <ul className="node-root">
         This is the root view.
-        {/* <button onTouchTap={this.addParent}> + </button> */}
         {this.renderNodes()}
       </ul>
     );
