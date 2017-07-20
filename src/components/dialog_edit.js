@@ -25,6 +25,7 @@ export default class DialogEdit extends Component {
       parentUpper: this.props.parentData.parentUpper,
       parentQuantity: this.props.parentData.parentQuantity,
       parentChildren: this.props.parentData.parentChildren,
+      key: this.props.parentData.key,
     }
   }
 
@@ -55,21 +56,40 @@ export default class DialogEdit extends Component {
       this.state.parentQuantity)
     }
 
-    var data = [{
+    var data = {
       parentLabel: this.state.parentLabel,
       parentLower: this.state.parentLower,
       parentUpper: this.state.parentUpper,
       parentQuantity: this.state.parentQuantity,
       parentChildren: newChildNodes,
-    }];
-    this.updateNodeData(data, this.props.keyIndex);
+      key: this.state.key,
+    };
+    this.updateNodeData(data);
     this.setState({ open: false });
   }
 
-  updateNodeData(data, keyIndex) {
-    //firebase.database().ref('nodes').child(keyIndex).set(data);
+  generateChildNodes(lower, upper, quantity) {
+    var childValueArray = [];
+    var i;
+    for(i = 0; i < quantity; i++) {
+      var childValue = this.generateRandomNumber(lower, upper);
+      childValueArray.push(childValue);
+    }
 
-    //console.log(newKey);
+    return childValueArray;
+  }
+
+  generateRandomNumber(min, max) { // both inclusive
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max-min+1)) + min;
+  }
+
+  updateNodeData(data) {
+    var updates = {};
+    updates['nodes/' + data.key] = data;
+
+    firebase.database().ref().update(updates);
   }
 
   render() {

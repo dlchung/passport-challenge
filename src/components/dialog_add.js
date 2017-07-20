@@ -34,7 +34,7 @@ export default class DialogAdd extends Component {
   };
 
   handleSubmit = () => {
-    var data = [{
+    var data = {
       parentLabel: this.state.parentLabel,
       parentLower: this.state.parentLower,
       parentUpper: this.state.parentUpper,
@@ -43,9 +43,9 @@ export default class DialogAdd extends Component {
         this.state.parentLower,
         this.state.parentUpper,
         this.state.parentQuantity),
-    }];
+    };
     // if this.props.parentNodes is empty, then do not concat
-    if(this.props.parentNodes) { data = this.props.parentNodes.concat(data); }
+    // if(this.props.parentNodes) { data = this.props.parentNodes.concat(data); }
     this.writeNodeData(data);
     this.setState({ open: false });
   }
@@ -68,7 +68,10 @@ export default class DialogAdd extends Component {
   }
 
   writeNodeData(data) {
-    firebase.database().ref('nodes').set(data);
+    // generate unique key
+    var newPostKey = firebase.database().ref().child('nodes').push().key;
+    data.key = newPostKey;
+    firebase.database().ref('nodes/' + newPostKey).set(data);
   }
 
   render() {
