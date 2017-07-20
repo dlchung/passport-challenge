@@ -35,7 +35,6 @@ export default class DialogAdd extends Component {
 
   handleSubmit = () => {
     var data = [{
-      uniqueId: this.generateUniqueId(),
       parentLabel: this.state.parentLabel,
       parentLower: this.state.parentLower,
       parentUpper: this.state.parentUpper,
@@ -66,18 +65,6 @@ export default class DialogAdd extends Component {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max-min+1)) + min;
-  }
-
-  generateUniqueId() {
-    var id = "";
-    var constraints = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    var chars = 5;
-
-    for (let i = 0; i < chars; i++) {
-      id += constraints.charAt(Math.floor(Math.random() * constraints.length));
-    }
-
-    return id;
   }
 
   writeNodeData(data) {
