@@ -16,20 +16,19 @@ for (let i = 0; i <= maxChildren; i++)
 
 export default class DialogEdit extends Component {
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
       open: false,
-      parentNodeData: ''
+      parentLabel: this.props.parentData.parentLabel,
+      parentLower: this.props.parentData.parentLower,
+      parentUpper: this.props.parentData.parentUpper,
+      parentQuantity: this.props.parentData.parentQuantity,
+      parentChildren: this.props.parentData.parentChildren,
     }
   }
 
   componentDidMount() {
-    var data = firebase.database().ref('nodes/' + this.props.id);
-    data.once('value', function(snap) {
-      console.log(snap.val());
-      // this.setState({ parentNodeData: snap.val() });
-    })
   }
 
   handleOpen = () => { this.setState({ open: true }); };
@@ -43,7 +42,6 @@ export default class DialogEdit extends Component {
 
   handleSubmit = () => {
     var data = [{
-      uniqueId: this.generateUniqueId(),
       parentLabel: this.state.parentLabel,
       parentLower: this.state.parentLower,
       parentUpper: this.state.parentUpper,
@@ -88,7 +86,7 @@ export default class DialogEdit extends Component {
             name="parentLabel"
             onChange={this.handleChange}
             hintText="Parent Label"
-            // value={parentDataArray.parentLabel}
+            value={this.state.parentLabel}
           />
           <br />
           <SelectField
@@ -106,6 +104,7 @@ export default class DialogEdit extends Component {
             hintText="0"
             floatingLabelText="Child node min value"
             floatingLabelFixed={true}
+            value={this.state.parentLower}
           />&nbsp;
           <TextField
             name="parentUpper"
@@ -113,6 +112,7 @@ export default class DialogEdit extends Component {
             hintText="1000"
             floatingLabelText="Child node max value"
             floatingLabelFixed={true}
+            value={this.state.parentUpper}
           />
         </Dialog>
       </div>

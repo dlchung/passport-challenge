@@ -15,7 +15,7 @@ export default class NodeRoot extends Component {
       let obj = nodes[keyName];
       return (
         <li className="node-parent" key={keyIndex}>
-        {obj.parentLabel} - {keyIndex} - <DialogEdit id={keyIndex} />
+        {obj.parentLabel} - {keyIndex} - <DialogEdit parentData={obj} />
           <ol>
             {
               // mapping through child nodes for each parent here

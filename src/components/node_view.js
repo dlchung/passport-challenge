@@ -24,8 +24,8 @@ export default class NodeView extends Component {
 
   componentDidMount() {
     // get data from firebase and set it to state
-    const data = firebase.database().ref().child('nodes');
-    data.on('value', snap => {
+    const dbRef = firebase.database().ref().child('nodes');
+    dbRef.on('value', snap => {
       if(snap.val()) {
         this.setState({
           parentNodes: snap.val(),
