@@ -14,7 +14,7 @@ const maxChildren = 15;
 for (let i = 0; i <= maxChildren; i++)
   numChildItems.push(<MenuItem value={i} key={i} primaryText={`${i}`} />)
 
-const styles = {
+const iconStyles = {
   tinyIcon: {
     width: 16,
     height: 16,
@@ -112,8 +112,8 @@ export default class DialogEdit extends Component {
           tooltip="Edit"
           tooltipPosition="bottom-center"
           onTouchTap={this.handleOpen}
-          iconStyle={styles.tinyIcon}
-          style={styles.tiny}
+          iconStyle={iconStyles.tinyIcon}
+          style={iconStyles.tiny}
         >
           <ActionBuild />
         </IconButton>

@@ -41,6 +41,10 @@ body {
   display: inline-block;
 }
 
+.dialog-del {
+  display: inline-block;
+}
+
 .node-view {
   clear: both;
 }
