@@ -46,7 +46,19 @@ export default class DialogEdit extends Component {
   componentDidMount() {
   }
 
-  handleOpen = () => { this.setState({ open: true }); };
+  handleOpen = () => {
+    this.setState({ open: true });
+
+    // update state if data was changed by another user
+    this.setState({
+      parentLabel: this.props.parentData.parentLabel,
+      parentLower: this.props.parentData.parentLower,
+      parentUpper: this.props.parentData.parentUpper,
+      parentQuantity: this.props.parentData.parentQuantity,
+      parentChildren: this.props.parentData.parentChildren,
+      key: this.props.parentData.key,
+    });
+  };
   handleClose = () => { this.setState({ open: false }); };
   handleChange = (event, index, value) => {
     const target = event.target;
