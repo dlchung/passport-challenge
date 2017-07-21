@@ -165,7 +165,8 @@ export default class DialogEdit extends Component {
               floatingLabelFixed={true}
               validators={['required', 'matchRegexp:^[0-9]+$']}
               errorMessages={['Please enter a valid integer.', 'Please enter a valid integer.']}
-            />&nbsp;
+            />
+            <br />
             <TextValidator
               name="parentUpper"
               value={this.state.parentUpper}
