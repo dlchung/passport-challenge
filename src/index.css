@@ -5,23 +5,95 @@ body {
   font-size: 0.8em;
 }
 
+/* Material Icons Styles */
+/* Rules for sizing the icon. */
+.material-icons.md-18 { font-size: 18px; }
+.material-icons.md-24 { font-size: 24px; }
+.material-icons.md-36 { font-size: 36px; }
+.material-icons.md-48 { font-size: 48px; }
+
+/* Rules for using icons as black on a light background. */
+.material-icons.md-dark { color: rgba(0, 0, 0, 0.54); }
+.material-icons.md-dark.md-inactive { color: rgba(0, 0, 0, 0.26); }
+
+/* Rules for using icons as white on a dark background. */
+.material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-light.md-inactive { color: rgba(255, 255, 255, 0.3); }
+
+
+.site-wrap {
+  margin: 10px;
+}
+
+.logo {
+  background: url('./img/logo.jpg') no-repeat;
+  height: 46px;
+  margin: 0 0 20px 0;
+  width: 338px;
+}
+
+.dialog-add-wrap {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.dialog-edit {
+  display: inline-block;
+}
+
 .node-view {
-  background: #ccc;
+  clear: both;
 }
 
-.node-root {
-  background: #eee;
-  padding: 5px;
+.node-root-bar {
+  background: #232931;
+  color: #fff;
 }
 
-.node-parent {
-  background: #ccc;
-  margin-left: 20px;
-  padding: 5px;
+  .node-root-bar h2 {
+    display: inline-block;
+    padding: 15px 15px;
+    margin: 0;
+  }
+
+p.parent-label {
+  display: inline-block;
+  font-size: 1.4em;
 }
 
-.node-child {
-  background: #aaa;
-  margin-left: 20px;
-  padding: 5px;
+.node-parent-wrap {
+  margin-left: 10px;
 }
+
+ul.tree, ul.tree ul {
+    list-style: none;
+     margin: 0;
+     padding: 0;
+   }
+   ul.tree ul {
+     margin-left: 10px;
+   }
+   ul.tree li {
+     margin: 0;
+     padding: 0 7px;
+     line-height: 20px;
+     border-left:1px dotted rgb(100,100,100);
+
+   }
+   ul.tree li:last-child {
+       border-left:none;
+   }
+   ul.tree li:before {
+      position:relative;
+      top:-0.3em;
+      height:1em;
+      width:12px;
+      color:white;
+      border-bottom:1px dotted rgb(100,100,100);
+      content:"";
+      display:inline-block;
+      left:-7px;
+   }
+   ul.tree li:last-child:before {
+      border-left:1px dotted rgb(100,100,100);
+   }

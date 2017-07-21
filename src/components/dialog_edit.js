@@ -3,9 +3,10 @@ import * as firebase from 'firebase';
 import { ValidatorForm, TextValidator, SelectValidator} from 'react-material-ui-form-validator';
 
 import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
+import IconButton from 'material-ui/IconButton';
+import ActionBuild from 'material-ui/svg-icons/action/build';
 
 const numChildItems = [];
 // populate num child nodes select dropdown
@@ -48,6 +49,7 @@ export default class DialogEdit extends Component {
     if (this.props.parentData.parentQuantity !== this.state.parentQuantity) { getNewChildNodes = true; }
 
     var newChildNodes = this.state.parentChildren;
+
     if (getNewChildNodes) {
       newChildNodes = this.generateChildNodes(
       this.state.parentLower,
@@ -93,10 +95,17 @@ export default class DialogEdit extends Component {
 
   render() {
     return (
-      <div>
-        <RaisedButton label="Edit" onTouchTap={this.handleOpen} />
+      <div className="dialog-edit">
+        <IconButton
+          tooltip="Edit"
+          tooltipPosition="bottom-center"
+          onTouchTap={this.handleOpen}
+          touch={true}
+        >
+          <ActionBuild />
+        </IconButton>
         <Dialog
-          title="Add a Parent Node"
+          title="Edit Parent Node"
           modal={true}
           open={this.state.open}
           onRequestClose={this.handleClose}

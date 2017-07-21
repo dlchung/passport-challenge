@@ -15,8 +15,8 @@ export default class NodeRoot extends Component {
       let obj = nodes[keyName];
       return (
         <li className="node-parent" key={keyIndex}>
-        {obj.parentLabel} - <DialogEdit parentData={obj} />
-          <ol>
+          <DialogEdit parentData={obj} /> <p className="parent-label">{obj.parentLabel}</p>
+          <ul>
             {
               // mapping through child nodes for each parent here
               obj.parentChildren ? obj.parentChildren.map(function(props, index) {
@@ -25,7 +25,7 @@ export default class NodeRoot extends Component {
                 );
               }) : null
             }
-          </ol>
+          </ul>
         </li>
       );
     });
@@ -33,10 +33,9 @@ export default class NodeRoot extends Component {
 
   render() {
     return(
-      <ul className="node-root">
-        This is the root view.
+      <div className="node-parent-wrap">
         {this.renderNodes()}
-      </ul>
+      </div>
     );
   }
 }

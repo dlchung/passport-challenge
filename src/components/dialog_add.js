@@ -3,7 +3,6 @@ import * as firebase from 'firebase';
 import { ValidatorForm, TextValidator, SelectValidator} from 'react-material-ui-form-validator';
 
 import Dialog from 'material-ui/Dialog';
-import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
 // import Divider from 'material-ui/Divider';
@@ -91,7 +90,11 @@ export default class DialogAdd extends Component {
   render() {
     return (
       <div>
-        <RaisedButton label="+ Parent" onTouchTap={this.handleOpen} />
+        <FlatButton
+          label="+ Parent"
+          onTouchTap={this.handleOpen}
+          backgroundColor="#fdb72e"
+        />
         <Dialog
           title="Add a Parent Node"
           modal={true}

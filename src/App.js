@@ -42,10 +42,19 @@ class App extends Component {
   render() {
     return (
       <MuiThemeProvider>
-        <div className="node-view">
-          This is the node view.
-          <DialogAdd parentNodes={this.state.parentNodes} />
-          <NodeRoot parentNodes={this.state.parentNodes} />
+        <div className="site-wrap">
+          <div className="logo"></div>
+          <div className="node-view">
+            <div className="node-root-bar">
+              <h2>Root</h2>
+              <div className="dialog-add-wrap">
+                <DialogAdd parentNodes={this.state.parentNodes} />
+              </div>
+            </div>
+            <ul className="node-root tree">
+                <NodeRoot parentNodes={this.state.parentNodes} />
+            </ul>
+          </div>
         </div>
       </MuiThemeProvider>
     );
