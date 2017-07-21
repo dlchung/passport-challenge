@@ -19,6 +19,7 @@ export default class NodeRoot extends Component {
           <p className="parent-label">{obj.parentLabel}</p>
           <DialogEdit parentData={obj} />
           <DialogDel parentData={obj} />
+          <p className="node-range">{obj.parentLower}&nbsp;:&nbsp;{obj.parentUpper} </p>
           <ul>
             {
               // mapping through child nodes for each parent here
