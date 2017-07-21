@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import * as firebase from 'firebase';
+import { ValidatorForm, TextValidator, SelectValidator} from 'react-material-ui-form-validator';
 
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
-import TextField from 'material-ui/TextField';
-import SelectField from 'material-ui/SelectField';
 import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
 
@@ -93,62 +92,75 @@ export default class DialogEdit extends Component {
   }
 
   render() {
-    const actions = [
-      <FlatButton
-        label="Cancel"
-        primary={true}
-        onTouchTap={this.handleClose}
-      />,
-      <FlatButton
-        label="Edit"
-        primary={true}
-        keyboardFocused={true}
-        onTouchTap={this.handleSubmit}
-      />
-    ];
-
     return (
       <div>
         <RaisedButton label="Edit" onTouchTap={this.handleOpen} />
         <Dialog
-          title="Edit Parent Node"
-          actions={actions}
+          title="Add a Parent Node"
           modal={true}
           open={this.state.open}
           onRequestClose={this.handleClose}
         >
-          <TextField
-            name="parentLabel"
-            onChange={this.handleChange}
-            hintText="Parent Label"
-            value={this.state.parentLabel}
-          />
-          <br />
-          <SelectField
-            floatingLabelText="How many child nodes?"
-            value={this.state.parentQuantity}
-            onChange={this.handleChange}
-            autoWidth={true}
+          <ValidatorForm
+            ref="form"
+            onSubmit={this.handleSubmit}
+            // onError={errors => console.log(errors)}
           >
-            {numChildItems}
-          </SelectField>
-          <br />
-          <TextField
-            name="parentLower"
-            onChange={this.handleChange}
-            hintText="0"
-            floatingLabelText="Child node min value"
-            floatingLabelFixed={true}
-            value={this.state.parentLower}
-          />&nbsp;
-          <TextField
-            name="parentUpper"
-            onChange={this.handleChange}
-            hintText="1000"
-            floatingLabelText="Child node max value"
-            floatingLabelFixed={true}
-            value={this.state.parentUpper}
-          />
+            <TextValidator
+              name="parentLabel"
+              value={this.state.parentLabel}
+              onChange={this.handleChange}
+              hintText="Parent Label"
+              validators={['required']}
+              errorMessages={['Please enter a label for the parent.']}
+            />
+            <br />
+            <SelectValidator
+              name="parentQuantity"
+              floatingLabelText="How many child nodes?"
+              value={this.state.parentQuantity}
+              onChange={this.handleChange}
+              autoWidth={true}
+              validators={['required']}
+              errorMessages={['Please select the number of child nodes.']}
+            >
+              {numChildItems}
+            </SelectValidator>
+            <br />
+            <TextValidator
+              name="parentLower"
+              value={this.state.parentLower}
+              onChange={this.handleChange}
+              hintText="0"
+              floatingLabelText="Child node min value"
+              floatingLabelFixed={true}
+              validators={['required', 'matchRegexp:^[0-9]+$']}
+              errorMessages={['Please enter a valid integer.', 'Please enter a valid integer.']}
+            />&nbsp;
+            <TextValidator
+              name="parentUpper"
+              value={this.state.parentUpper}
+              onChange={this.handleChange}
+              hintText="1000"
+              floatingLabelText="Child node max value"
+              floatingLabelFixed={true}
+              validators={['required', 'matchRegexp:^[0-9]+$']}
+              errorMessages={['Please enter a valid integer.', 'Please enter a valid integer.']}
+            />
+            <div>
+              <FlatButton
+                label="Cancel"
+                primary={true}
+                onTouchTap={this.handleClose}
+              />
+              <FlatButton
+                label="Add"
+                primary={true}
+                keyboardFocused={true}
+                type="submit"
+              />
+            </div>
+          </ValidatorForm>
         </Dialog>
       </div>
     );

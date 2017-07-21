@@ -52,6 +52,7 @@ export default class DialogAdd extends Component {
     // if this.props.parentNodes is empty, then do not concat
     // if(this.props.parentNodes) { data = this.props.parentNodes.concat(data); }
     this.writeNodeData(data);
+    // reset state values after submit to clear form values
     this.setState({
       open: false,
       parentLabel: '',
@@ -88,16 +89,11 @@ export default class DialogAdd extends Component {
   }
 
   render() {
-    const actions = [
-
-    ];
-
     return (
       <div>
         <RaisedButton label="+ Parent" onTouchTap={this.handleOpen} />
         <Dialog
           title="Add a Parent Node"
-          actions={actions}
           modal={true}
           open={this.state.open}
           onRequestClose={this.handleClose}
@@ -106,7 +102,6 @@ export default class DialogAdd extends Component {
             ref="form"
             onSubmit={this.handleSubmit}
             // onError={errors => console.log(errors)}
-            instantValidate={true}
           >
             <TextValidator
               name="parentLabel"
