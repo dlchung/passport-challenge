@@ -55,6 +55,7 @@ p.credit {
 }
 
 .node-view {
+  border-bottom: solid 5px #aaa;
   clear: both;
 }
 
