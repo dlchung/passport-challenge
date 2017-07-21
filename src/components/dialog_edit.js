@@ -6,6 +6,7 @@ import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
+import Snackbar from 'material-ui/Snackbar';
 import ActionBuild from 'material-ui/svg-icons/action/build';
 
 const numChildItems = [];
@@ -32,6 +33,7 @@ export default class DialogEdit extends Component {
 
     this.state = {
       open: false,
+      snackbarOpen: false,
       parentLabel: this.props.parentData.parentLabel,
       parentLower: this.props.parentData.parentLower,
       parentUpper: this.props.parentData.parentUpper,
@@ -79,7 +81,12 @@ export default class DialogEdit extends Component {
     };
     this.updateNodeData(data);
     this.setState({ open: false });
+
+    this.handleSnackbarOpen();
   }
+
+  handleSnackbarOpen = () => { this.setState({ snackbarOpen: true }); }
+  handleSnackbarClose = () => { this.setState({ snackbarOpen: false }); }
 
   generateChildNodes(lower, upper, quantity) {
     var childValueArray = [];
@@ -176,7 +183,7 @@ export default class DialogEdit extends Component {
                 onTouchTap={this.handleClose}
               />&nbsp;&nbsp;
               <FlatButton
-                label="Add"
+                label="Update"
                 primary={true}
                 keyboardFocused={true}
                 type="submit"
@@ -184,6 +191,12 @@ export default class DialogEdit extends Component {
             </div>
           </ValidatorForm>
         </Dialog>
+        <Snackbar
+          open={this.state.snackbarOpen}
+          message="Parent node updated"
+          autoHideDuration={4000}
+          onRequestClose={this.handleSnackbarClose}
+        />
       </div>
     );
   }

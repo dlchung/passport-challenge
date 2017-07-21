@@ -5,6 +5,7 @@ import { ValidatorForm, TextValidator, SelectValidator} from 'react-material-ui-
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
+import Snackbar from 'material-ui/Snackbar';
 // import Divider from 'material-ui/Divider';
 
 const numChildItems = [];
@@ -19,6 +20,7 @@ export default class DialogAdd extends Component {
 
     this.state = {
       open: false,
+      snackbarOpen: false,
       parentLabel: '',
       parentLower: '',
       parentUpper: '',
@@ -61,7 +63,12 @@ export default class DialogAdd extends Component {
       parentChildren: '',
       key: '',
     });
+
+    this.handleSnackbarOpen();
   }
+
+  handleSnackbarOpen = () => { this.setState({ snackbarOpen: true }); }
+  handleSnackbarClose = () => { this.setState({ snackbarOpen: false }); }
 
   generateChildNodes(lower, upper, quantity) {
     var childValueArray = [];
@@ -162,6 +169,12 @@ export default class DialogAdd extends Component {
             </div>
           </ValidatorForm>
         </Dialog>
+        <Snackbar
+          open={this.state.snackbarOpen}
+          message="Parent node added"
+          autoHideDuration={4000}
+          onRequestClose={this.handleSnackbarClose}
+        />
       </div>
     );
   }

@@ -4,6 +4,7 @@ import * as firebase from 'firebase';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import IconButton from 'material-ui/IconButton';
+import Snackbar from 'material-ui/Snackbar';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 
 const iconStyles = {
@@ -24,6 +25,7 @@ export default class DialogDel extends Component {
 
     this.state = {
       open: false,
+      snackbarOpen: false,
       parentLabel: this.props.parentData.parentLabel,
       parentLower: this.props.parentData.parentLower,
       parentUpper: this.props.parentData.parentUpper,
@@ -40,7 +42,11 @@ export default class DialogDel extends Component {
     this.removeNodeData(this.state.key);
 
     this.handleClose();
+    this.handleSnackbarOpen();
   }
+
+  handleSnackbarOpen = () => { this.setState({ snackbarOpen: true }); }
+  handleSnackbarClose = () => { this.setState({ snackbarOpen: false }); }
 
   removeNodeData(key) {
     var location = 'nodes/' + key;
@@ -80,6 +86,12 @@ export default class DialogDel extends Component {
             />
           </div>
         </Dialog>
+        <Snackbar
+          open={this.state.snackbarOpen}
+          message="Parent node removed"
+          autoHideDuration={4000}
+          onRequestClose={this.handleSnackbarClose}
+        />
       </div>
     );
   }
