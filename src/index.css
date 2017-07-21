@@ -58,7 +58,9 @@ body {
 
 p.parent-label {
   display: inline-block;
-  font-size: 1.4em;
+  font-size: 1.2em;
+  margin: 0;
+  padding: 5px;
 }
 
 .node-parent-wrap {
