@@ -1,7 +1,7 @@
 ## Passport Coding Challenge
-### by Daniel Chung
+#### by Daniel Chung
 
-Live: [https://dashboard.heroku.com/apps/dchungpassportchallenge]
+Live: [https://dchungpassportchallenge.herokuapp.com/]
 
 This app is my submission for the Passport, Inc. coding challenge.
 
