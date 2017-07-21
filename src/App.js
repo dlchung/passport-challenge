@@ -44,6 +44,9 @@ class App extends Component {
       <MuiThemeProvider>
         <div className="site-wrap">
           <div className="logo"></div>
+          <div className="credit">
+            <p>Coded and designed by Daniel Chung. Source: <a href="https://github.com/dlchung/passport-challenge">https://github.com/dlchung/passport-challenge</a></p>
+          </div>
           <div className="node-view">
             <div className="node-root-bar">
               <h2>Root</h2>

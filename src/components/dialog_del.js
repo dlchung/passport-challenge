@@ -3,7 +3,6 @@ import * as firebase from 'firebase';
 
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
-import MenuItem from 'material-ui/MenuItem';
 import IconButton from 'material-ui/IconButton';
 import ActionDelete from 'material-ui/svg-icons/action/delete';
 
@@ -67,18 +66,19 @@ export default class DialogDel extends Component {
           onRequestClose={this.handleClose}
         >
           <p>Are you sure you want to delete this parent node?</p>
-
-          <FlatButton
-            label="Cancel"
-            primary={true}
-            onTouchTap={this.handleClose}
-          />
-          <FlatButton
-            label="Delete"
-            primary={true}
-            keyboardFocused={true}
-            onTouchTap={this.handleSubmit}
-          />
+          <div className="dialog-buttons-wrap">
+            <FlatButton
+              label="Cancel"
+              primary={true}
+              onTouchTap={this.handleClose}
+            />&nbsp;&nbsp;
+            <FlatButton
+              label="Delete"
+              primary={true}
+              keyboardFocused={true}
+              onTouchTap={this.handleSubmit}
+            />
+          </div>
         </Dialog>
       </div>
     );

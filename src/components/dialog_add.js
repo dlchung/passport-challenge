@@ -147,12 +147,12 @@ export default class DialogAdd extends Component {
               validators={['required', 'matchRegexp:^[0-9]+$']}
               errorMessages={['Please enter a valid integer.', 'Please enter a valid integer.']}
             />
-            <div>
+            <div className="dialog-buttons-wrap">
               <FlatButton
                 label="Cancel"
                 primary={true}
                 onTouchTap={this.handleClose}
-              />
+              />&nbsp;&nbsp;
               <FlatButton
                 label="Add"
                 primary={true}
